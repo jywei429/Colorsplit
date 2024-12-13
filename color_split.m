@@ -50,27 +50,6 @@ figure;
 imshow(sumImage);
 title('Sum of Cropped Portions');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 %% 
 size = 100;
 sigma = 50;
@@ -80,8 +59,6 @@ Y = X';
 % GH = exp(-1 / (150^2) * ((Y - size / 2).^2 + (X - size / 2).^2));
 G = ones(size, size);     
 GH = ones(size, size);
-
-
 
 % 1 green
 H1 = .33*GH;
@@ -94,7 +71,6 @@ hsvim1(:,:,3) = V1;
 ref1 = hsv2rgb(hsvim1);
 
 % 2 blue
-
 ref2 = C4Crop;
 ref2 = double(ref2);
 
@@ -107,7 +83,6 @@ ref3 = double(ref3);
 
 ref3 = ref3 - min(ref3(:)); 
 ref3 = ref3 / max(ref3(:)); 
-
 
 % REFW
 sum = ref1 + ref2 + ref3;
@@ -125,23 +100,11 @@ title('this is ref3');
 figure(4), imshow(refw);
 title('this is refw');
 
-
-
-
-
-
-
-
-
-
 %%
 % 
 testim = (ref2 + ref3);
-
 testim = testim - min(testim(:)); 
 testim = testim / max(testim(:)); 
-
-
 
 figure(), imshow(testim);
 title('this is testim');
@@ -152,18 +115,6 @@ title('this is testim');
 % savePath = fullfile(currentFolder, fileName);
 % imwrite(testim, savePath);
 % fprintf('save path：%s\n', savePath);
-
-
-
-
-
-
-
-
-
-
-
-
 
 %%
 mw = refwpsp(refw);
@@ -271,8 +222,6 @@ figure()
 imagesc(data(:,:,2))
 title('data(:,:,2)')
 
-
-
 % %% Analyze data(:,:,2)
 % % 
 % ax1 = nexttile;
@@ -302,7 +251,6 @@ title('data(:,:,2)')
 % ylabel('Y-axis')
 % 
 % linkaxes([ax1, ax2], "x")
-
 
 % %% Analyze data(:,:,3)
 % ax1 = nexttile;
@@ -367,8 +315,6 @@ subplot(1,3,3);
 imshow(new_rgb);
 title('New Image with ref2 HSV characteristics');
 
-
-
 %% Then do the same thing to Red
 
 % Step 1: ref3 to HSV, ref3 is red
@@ -383,14 +329,13 @@ data_slice = data(:,:,3);
 % data_scaled = imresize(data_scaled, size(V)); 
 data_scaled = data_slice;
 
-
 % Step 3: New HSV
 new_hsv = cat(3, H, S, data_scaled);
 
 % Step 4: Back to RGB
 new_rgb = hsv2rgb(new_hsv);
 
-% Step 5
+% Step 5: Plot
 figure;
 subplot(1,3,1);
 imshow(ref3);
